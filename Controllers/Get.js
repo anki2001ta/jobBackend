@@ -13,7 +13,7 @@ const AllJob=async(req,res)=>{
 
 const SingleJob=async(req,res)=>{
     try {
-        let jobID=req.param.id;
+        let jobID=req.params.id;
         let singleJob=await JobModel.findById(jobID);
         res.status(200).send({data:singleJob})
     } catch (error) {
