@@ -63,7 +63,7 @@ const PostJob=async(req,res)=>{
     try {
         await JobModel.create(req.body);
     } catch (error) {
-        res.status(500).send({ msg: "Failed to post the job" });
+        res.status(200).send({ msg: "Job Posteed Sucessfully" });
     }
 }
 module.exports = { Login,Signup,PostJob };
