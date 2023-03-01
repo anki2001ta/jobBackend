@@ -4,6 +4,7 @@ const UserModel = require("../Models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JobModel = require("../Models/Job.model");
+const ApplyModel = require("../Models/Apply.model");
 
 const Signup = async (req, res) => {
   try {
@@ -61,9 +62,21 @@ const Login = async (req, res) => {
 };
 const PostJob=async(req,res)=>{
     try {
-        await JobModel.create(req.body);
+        const t=await JobModel.create(req.body);
+        res.send(t)
     } catch (error) {
-        res.status(200).send({ msg: "Job Posteed Sucessfully" });
+      console.log(error)
+        res.status(500).send({ msg: "Failed to post the job" });
     }
 }
-module.exports = { Login,Signup,PostJob };
+const ApplyJob=async(req,res)=>{
+  try {
+      await ApplyModel.create(req.body);
+      res.send({msg:"job applied"})
+  } catch (error) {
+    console.log(error)
+      res.status(500).send({ msg: "Failed to apply to the job" });
+  }
+}
+
+module.exports = { Login,Signup,PostJob,ApplyJob };
