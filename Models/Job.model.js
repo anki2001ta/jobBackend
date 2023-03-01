@@ -5,7 +5,7 @@ const jobSchema=mongoose.Schema({
     location:String,
     description:String,
     type:String,
-    Package:Number
+    
 })
 const JobModel=mongoose.model("reduxjob",jobSchema);
 module.exports=JobModel;
