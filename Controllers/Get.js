@@ -23,6 +23,17 @@ const SingleJob=async(req,res)=>{
         res.status(500).send({ msg: "Failed to get job" })
     }
 }
+const DeleteJob=async(req,res)=>{
+    try {
+        let jobID=req.params.id;
+        console.log(jobID)
+        let deleteJob=await JobModel.findByIdAndDelete(jobID);
+        res.status(200).send({data:deleteJob})
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ msg: "Job Deleted" })
+    }
+}
 
 const EmployerJob=async(req,res)=>{
     try {
@@ -33,6 +44,8 @@ const EmployerJob=async(req,res)=>{
         res.status(500).send({ msg: "Failed to get job" })
     }
 }
+
+//for employeer
 const ApplyJobs=async(req,res)=>{
     try {
         const id=req.params.id
@@ -40,7 +53,7 @@ const ApplyJobs=async(req,res)=>{
         res.status(200).send({data:apply})
     } catch (error) {
         console.log(error);
-        res.status(500).send({ msg: "Failed to get job" })
+        res.status(500).send({ msg:"Failed to get job" })
     }
 }
-module.exports={AllJob,SingleJob,EmployerJob,ApplyJobs}
+module.exports={AllJob,SingleJob,EmployerJob,ApplyJobs,DeleteJob}
